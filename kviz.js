@@ -16,7 +16,7 @@ let otazky = [
     
 ];
 
-//Zobrazení čísla otázky
+//NEFUNGUJE SPRÁVNĚ Zobrazení čísla otázky
 let poradi = document.querySelector("#poradi");
 poradi.textContent = 'Otázka '+ otazky.indexOf('otazka') + ' / ' + otazky.length;
 
@@ -29,21 +29,19 @@ otazka.textContent = otazky[0].otazka;
 let obrazek = document.querySelector("#obrazek");
 obrazek.src = otazky[0].obrazek;
 
-// Zobrazení možných odpovědí na otázku na stránce
+// Zobrazení možných odpovědí na otázku na stránce 
+
 function pridejOdpoved(i){ 
 let novaOdpoved = document.createElement('li');
 let seznamOdpovedi = document.querySelector('ul');
 seznamOdpovedi.appendChild(novaOdpoved);
 
-novaOdpoved.textContent = otazky[0].moznosti[0];
+novaOdpoved.textContent = otazky[0].moznosti[i];
 }
 
-otazky.forEach(pridejOdpoved)
-
-
-
-
-
+for (let i=0; i<otazky[0].moznosti.length; i=i+1){
+        pridejOdpoved(i);
+}
 
 
 
