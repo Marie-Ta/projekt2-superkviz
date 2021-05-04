@@ -12,6 +12,12 @@ let otazky = [
         obrazek: "obrazky/ovoce.jpg",
         moznosti: ["Mouruše", "Moduše", "Moruše"],
         spravneIndex: 2
+    },
+
+    {   otazka: "Z jablek se vyrabí: ",
+        obrazek: "obrazky/snehurka.jpg",
+        moznosti: ["Žížaly", "Křížaly", "Píďalky"],
+        spravneIndex: 1
     }
     
 ];
@@ -26,7 +32,8 @@ function zobrazOtazku(i){
     otazka.textContent = otazky[i].otazka;
 }
 
-zobrazOtazku(0);
+let i = 0;
+zobrazOtazku(i);
 
 // Zobrazení obrázku u otázky na stránce
 let y = 0;
@@ -56,12 +63,12 @@ for (let i=0; i<otazky[y].moznosti.length; i=i+1){
 let moznost = document.querySelector("ul"); //je potřeba, aby slyšel, na které jednotlivé li je kliknuto, ne jen ul
 moznost.addEventListener('click', function(){
     y=y+1;
-    
+    i=i+1;
     for (let i=0; i<otazky[y].moznosti.length; i=i+1){
         pridejOdpoved(y, i);
     }
 
-    zobrazOtazku(1);
+    zobrazOtazku(i);
 
     obrazek.src = otazky[y].obrazek;
 
