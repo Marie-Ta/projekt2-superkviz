@@ -20,28 +20,59 @@ let otazky = [
 let poradi = document.querySelector("#poradi");
 poradi.textContent = 'Otázka '+ otazky.indexOf('otazka') + ' / ' + otazky.length;
 
-
 // Zobrazení otázky na stránce
 let otazka = document.querySelector("#otazka");
-otazka.textContent = otazky[0].otazka;
+function zobrazOtazku(i){
+    otazka.textContent = otazky[i].otazka;
+}
+
+zobrazOtazku(0);
 
 // Zobrazení obrázku u otázky na stránce
+let y = 0;
 let obrazek = document.querySelector("#obrazek");
-obrazek.src = otazky[0].obrazek;
+obrazek.src = otazky[y].obrazek;
 
 // Zobrazení možných odpovědí na otázku na stránce 
+//let novaOdpoved = document.createElement('li');
+//let seznamOdpovedi = document.querySelector('ul');
 
-function pridejOdpoved(i){ 
-let novaOdpoved = document.createElement('li');
-let seznamOdpovedi = document.querySelector('ul');
-seznamOdpovedi.appendChild(novaOdpoved);
-
-novaOdpoved.textContent = otazky[0].moznosti[i];
+function pridejOdpoved(y, i){ 
+   let novaOdpoved = document.createElement('li');
+   let seznamOdpovedi = document.querySelector('ul');
+    
+   seznamOdpovedi.appendChild(novaOdpoved);
+        //novaOdpoved + 'data-odpoved' + i ; //myslím si, že přidává třídu k li, podobně, jak je napsáno v Readme
+    novaOdpoved.textContent = otazky[y].moznosti[i];
 }
 
-for (let i=0; i<otazky[0].moznosti.length; i=i+1){
-        pridejOdpoved(i);
+for (let i=0; i<otazky[y].moznosti.length; i=i+1){
+    pridejOdpoved(y, i);
 }
+
+
+//Přepnutí na další otázku
+//Je potřeba ještě ODEBRAT PŮVODNÍ ODPOVĚDI a ZOBECNIT, aby fungovala i třetí otázka
+let moznost = document.querySelector("ul"); //je potřeba, aby slyšel, na které jednotlivé li je kliknuto, ne jen ul
+moznost.addEventListener('click', function(){
+    y=y+1;
+    
+    for (let i=0; i<otazky[y].moznosti.length; i=i+1){
+        pridejOdpoved(y, i);
+    }
+
+    zobrazOtazku(1);
+
+    obrazek.src = otazky[y].obrazek;
+
+    
+}) 
+
+
+
+
+
+
 
 
 
