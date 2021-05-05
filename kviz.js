@@ -19,8 +19,11 @@ let otazky = [
         moznosti: ["Žížaly", "Křížaly", "Píďalky"],
         spravneIndex: 1
     }
-    
 ];
+
+let i = 0;
+let y = 0;
+let obrazek = document.querySelector("#obrazek");
 
 //NEFUNGUJE SPRÁVNĚ Zobrazení čísla otázky
 let poradi = document.querySelector("#poradi");
@@ -28,23 +31,46 @@ poradi.textContent = 'Otázka '+ otazky.indexOf('otazka') + ' / ' + otazky.lengt
 
 // Zobrazení otázky na stránce
 let otazka = document.querySelector("#otazka");
+
 function zobrazOtazku(i){
+    odpovedi.innerHTML = "";
+
     otazka.textContent = otazky[i].otazka;
+    obrazek.src = otazky[y].obrazek;
+    
+    for (let i=0; i<otazky[y].moznosti.length; i=i+1) { 
+        let novaOdpoved = document.createElement('li');
+        let seznamOdpovedi = document.querySelector('ul');
+        
+        seznamOdpovedi.appendChild(novaOdpoved);
+        novaOdpoved.textContent = otazky[y].moznosti[i];
+    }
+    
 }
 
-let i = 0;
 zobrazOtazku(i);
 
-// Zobrazení obrázku u otázky na stránce
-let y = 0;
-let obrazek = document.querySelector("#obrazek");
-obrazek.src = otazky[y].obrazek;
+// Přepnutí na další otázku
+let moznost = document.querySelector("ul"); //je potřeba, aby slyšel, na které jednotlivé li je kliknuto, ne jen ul
+moznost.addEventListener('click', function(){
+    y=y+1;
+    i=i+1;
+     
+    zobrazOtazku(i);
+        
+}) 
+
+
+
+
+
+
 
 // Zobrazení možných odpovědí na otázku na stránce 
 //let novaOdpoved = document.createElement('li');
 //let seznamOdpovedi = document.querySelector('ul');
 
-function pridejOdpoved(y, i){ 
+/*function pridejOdpoved(y, i){ 
    let novaOdpoved = document.createElement('li');
    let seznamOdpovedi = document.querySelector('ul');
     
@@ -55,30 +81,7 @@ function pridejOdpoved(y, i){
 
 for (let i=0; i<otazky[y].moznosti.length; i=i+1){
     pridejOdpoved(y, i);
-}
-
-
-//Přepnutí na další otázku
-//Je potřeba ještě ODEBRAT PŮVODNÍ ODPOVĚDI a ZOBECNIT, aby fungovala i třetí otázka
-let moznost = document.querySelector("ul"); //je potřeba, aby slyšel, na které jednotlivé li je kliknuto, ne jen ul
-moznost.addEventListener('click', function(){
-    y=y+1;
-    i=i+1;
-    for (let i=0; i<otazky[y].moznosti.length; i=i+1){
-        pridejOdpoved(y, i);
-    }
-
-    zobrazOtazku(i);
-
-    obrazek.src = otazky[y].obrazek;
-
-    
-}) 
-
-
-
-
-
+}*/
 
 
 
