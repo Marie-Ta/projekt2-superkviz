@@ -27,6 +27,13 @@ let obrazek = document.querySelector("#obrazek");
 let vysledek = document.querySelector('.vysledek');
 let otazka = document.querySelector("#otazka");
 let vyhodnoceni = document.querySelector("#vyhodnoceni");
+let odpovedi = document.querySelector("#odpovedi");
+let zvoleneOdpovedi = [];
+
+/*Zkusila bych oddělit to, co se zobrazuje uživateli a to, co je uložené v rámci programu v proměnných. 
+Takže co tam konkrétně chybí je proměnná, do které budeš ukládat zvolené odpovědi, něco jako let odpovedi = [], na místě, kde ted děláš console.log potom do toho pole přidáš zvolenou odpověd odpovedi.push(), mezi ty závorky vložíš vybranou odpověd.
+Tady je prostor pro datatset. Když tu otázku tvoříš, tak každému li můžeš nastavit dataset, novaOdpoved.dataset.odpoved = i, takže si tam uložíš pořadové číslo odpovědi. To pak použiješ v tom .push(event.target.dataset.odpoved).
+Až uplně nakonec použiješ tohle naplněné pole odpovědí pro vygenerování seznamu, který zobrazíš. */
 
 // Zobrazení otázky na stránce
 function zobrazOtazku(i){
@@ -44,12 +51,18 @@ function zobrazOtazku(i){
         
         seznamOdpovedi.appendChild(novaOdpoved);
         novaOdpoved.textContent = otazky[y].moznosti[i];
+        novaOdpoved.dataset.odpoved = i; // vytváří dataset a přiřazuje mu pořadové číslo odpovědi
    
         novaOdpoved.addEventListener('click', function(){
         
         //zobrazení otázky a vybrané odpovědi v konzoli
         console.log((y+1) + '. ' + otazka.textContent),
         console.log('Tvoje odpověď: ' + novaOdpoved.innerText)
+        
+        //přidání zvolené odpovědi do pole zvoleneOdpovedi a přidání data setu odpoved 
+        zvoleneOdpovedi.push(event.target.dataset.odpoved);
+
+        console.log(zvoleneOdpovedi);
         
         //vyhodnoceni.textContent = otazka.textContent
        });
@@ -73,10 +86,6 @@ moznost.addEventListener('click', function(){
     else{
         zobrazHodnoceni();
     }
-
-  // let presunutaOtazka = event.target;
-  //  console.log(presunutaOtazka)
-  
 }) 
 
 function zobrazHodnoceni(){
