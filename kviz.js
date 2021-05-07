@@ -102,7 +102,7 @@ function zobrazHodnoceni(){
         
         let tvojeOdpoved = document.createElement('p');
         vysledek.appendChild(tvojeOdpoved);
-        tvojeOdpoved.textContent = "Tvoje odpověď: " + zvoleneOdpovedi[i] + '\n';
+        tvojeOdpoved.textContent = "Tvoje odpověď: " + otazky[i].moznosti[zvoleneOdpovedi[i]] + '\n';
 
         let spravnost = document.createElement('p');
         vysledek.appendChild(spravnost);
@@ -116,7 +116,7 @@ function zobrazHodnoceni(){
         }
 
         else{
-            spravnost.textContent = "Správná odpověď: " + otazky[i].spravnyIndex + '\n';
+            spravnost.textContent = "Správná odpověď: " + otazky[i].moznosti[otazky[i].spravnyIndex] + '\n';
         }
     }
 
@@ -125,6 +125,3 @@ function zobrazHodnoceni(){
     celkemOK.textContent = "TADY MÁ BÝT CELKOVÉ HODNOCENÍ UŽIVATELE" + '\n';
 }
 
-/*No dobré, už máš pole odpovědí. ted ho projdeš celé cyklem ve funkci zobraz vyhodnocení nejspíš. Pro každou otázku vytvoříš nadpis h3 a 2 elementy p a naplníš je otázkou, správnou odpovědí a uživatelskou odpovědí. Stejně jako jsi vytvářela ty otázky.
-
-Nakonec to celé přidáš do toho div s id vysledek*/
