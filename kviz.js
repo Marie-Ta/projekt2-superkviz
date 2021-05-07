@@ -29,6 +29,7 @@ let otazka = document.querySelector("#otazka");
 let vyhodnoceni = document.querySelector("#vyhodnoceni");
 let odpovedi = document.querySelector("#odpovedi");
 let zvoleneOdpovedi = [];
+let ok = 0;
 
 let otazkaVyhodnoceni = document.querySelector("#otazkaVyhodnoceni");
 
@@ -108,11 +109,10 @@ function zobrazHodnoceni(){
         vysledek.appendChild(spravnost);
          '\n';      
 
-         console.log("zvolené odpovědi " + zvoleneOdpovedi[i]);
-         console.log("správný index ");
-
         if(zvoleneOdpovedi[i] == otazky[i].spravnyIndex ){
             spravnost.textContent = "To je SPRÁVNĚ!"
+            ok = ok+1;
+            console.log("ok "+ ok);
         }
 
         else{
@@ -122,6 +122,6 @@ function zobrazHodnoceni(){
 
     let celkemOK = document.createElement('h2');
     vysledek.appendChild(celkemOK);
-    celkemOK.textContent = "TADY MÁ BÝT CELKOVÉ HODNOCENÍ UŽIVATELE" + '\n';
+    celkemOK.textContent = "SPRÁVNĚ " + ok + " ZE " + otazky.length + " OTÁZEK. ÚSPĚŠNOST " + (Math.round(ok/otazky.length * 100)) + " %.";
 }
 
